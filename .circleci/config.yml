@@ -13,7 +13,7 @@ jobs:
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '14.15'         
+          node-version: "14.15"
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
@@ -25,37 +25,29 @@ jobs:
             echo $(npm --version)
             npm run frontend:install
       # TODO: Install dependencies in the the backend API
-          name: Install API Dependencies
-          command: |
-            npm run api:install          
       - run:
           name: Install API Dependencies
           command: |
-           echo "TODO: Install dependencies in the the backend API  "
+            echo "TODO: Install dependencies in the the backend API  "
+            npm run api:install
       # TODO: Lint the frontend
-          name: Front-End Lint
-          command: |
-           npm run frontend:lint
       - run:
           name: Front-End Lint
           command: |
             echo "TODO: Lint the frontend"
+            npm run frontend:lint
       # TODO: Build the frontend app
-          name: Front-End Build
-          command: |
-            npm run frontend:build
       - run:
           name: Front-End Build
           command: |
             echo "TODO: Build the frontend app"
+            npm run frontend:build
       # TODO: Build the backend API
-          name: Backend Build
-          command: |
-            npm run api:build      
       - run:
           name: API Build
           command: |
             echo "TODO: Build the backend API"
+            npm run api:build
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -63,7 +55,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '14.15' 
+          node-version: "14.15"
       - eb/setup
       - aws-cli/setup
       - checkout
@@ -72,7 +64,27 @@ jobs:
           # TODO: Install, build, deploy in both apps
           command: |
             echo "# TODO: Install, build, deploy in both apps"
-            
+      - run:
+          name: Front-End Install
+          command: |
+            npm run frontend:install
+      - run:
+          name: Back-End Install
+          command: |
+            npm run api:install
+      - run:
+          name: Front-End Build
+          command: |
+            npm run frontend:build
+      - run:
+          name: Back-End Build
+          command: |
+            npm run api:build
+      - run:
+          name: Deploy App
+          command: |
+            npm run frontend:deploy
+
 workflows:
   udagram:
     jobs:
