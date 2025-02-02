@@ -1,13 +1,9 @@
 branch-defaults:
   master:
     environment: udagram-api-dev2
-environment-defaults:
-  udagram-api-dev2:
-    branch: master
-    repository: nd0067-c4-deployment-process-project-starter
 global:
   application_name: udagram
-  branch: master
+  branch: null
   default_ec2_keyname: mykeypair
   default_platform: Node.js 18 running on 64bit Amazon Linux 2
   default_region: us-east-1
@@ -15,7 +11,7 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  profile: eb-cli
+  profile: default
   repository: null
   sc: git
   workspace_type: Application
